@@ -13,6 +13,7 @@ type ObjectType string
 const (
 	NULL_OBJ         = "NULL"
 	INTEGER_OBJ      = "INTEGER"
+	STRING_OBJ       = "STRING"
 	BOOLEAN_OBJ      = "BOOLEAN"
 	RETURN_VALUE_OBJ = "RETURN_VALUE"
 	ERROR_OBJ        = "ERROR"
@@ -108,4 +109,16 @@ func (f *Function) Inspect() string {
 	out.WriteString("\n}")
 
 	return out.String()
+}
+
+type String struct {
+	Value string
+}
+
+func (s *String) Type() ObjectType {
+	return STRING_OBJ
+}
+
+func (s *String) Inspect() string {
+	return s.Value
 }
