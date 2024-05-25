@@ -28,6 +28,7 @@ const (
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
+
 	for {
 		fmt.Printf(PROMPT)
 		scanned := scanner.Scan()
@@ -47,7 +48,7 @@ func Start(in io.Reader, out io.Writer) {
 
 		evaluated := evaluator.Eval(program)
 		if evaluated != nil {
-			io.WriteString(out, program.String())
+			io.WriteString(out, evaluated.Inspect())
 			io.WriteString(out, "\n")
 		}
 	}
